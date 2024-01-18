@@ -1,0 +1,26 @@
+{
+    "object_changes": [
+        {
+            "object": "access_logs",
+            "type": "inserted",
+            "values": {
+                "id": "24",
+                "time": "1705523584",
+                "event": "7",
+                "device_id": "4408801109264246",
+                "identifier_id": "1717658368",
+                "user_id": "1",
+                "portal_id": "1",
+                "identification_rule_id": "1",
+                "card_value": "0",
+                "qrcode_value": "",
+                "pin_value": "",
+                "confidence": "1009",
+                "mask": "0",
+                "log_type_id": "-1"
+            }
+        }
+    ],
+    "device_id": 4408801109264246,
+    "time": 1705523584
+}
