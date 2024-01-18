@@ -35,6 +35,6 @@ app.use(function(err, req, res, next) {
 });
 
 // SET BASE URL TO DEVICE
-axios.defaults.baseURL = "http://192.168.0.109/";
+axios.defaults.baseURL = "http://192.168.0.104/";
 
 module.exports = app;
