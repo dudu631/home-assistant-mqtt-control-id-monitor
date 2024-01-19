@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var axios = require('axios');
+require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
@@ -35,6 +36,6 @@ app.use(function(err, req, res, next) {
 });
 
 // SET BASE URL TO DEVICE
-axios.defaults.baseURL = "http://192.168.0.104/";
+axios.defaults.baseURL = `http://${process.env.CONTROL_ID_IP}/`;
 
 module.exports = app;

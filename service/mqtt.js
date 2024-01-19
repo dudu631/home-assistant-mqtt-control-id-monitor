@@ -1,16 +1,16 @@
 const mqtt = require("mqtt");
 
-const url = 'mqtt://192.168.0.xxx:1883'
+const url = process.env.MQTT_URL;
 
 const options = {
     clientId: 'control_id_test',
-    username: '',
-    password: '',
-}
+    username: process.env.MQTT_USER || '',
+    password: process.env.MQTT_PW || '',
+};
 
 const client = mqtt.connect(url, options);
 
-client.on('connect',  (err) => {
+client.on('connect',  (_pckg) => {
     console.log('MQTT Connected successfully')
     client.publish(
         "homeassistant/sensor/control-id-test/User_Access/config",
@@ -37,7 +37,7 @@ const publishEventInformation = (event) => {
     const topic = `homeassistant/sensor/control-id-test/User_Access/state`;
     const message = JSON.stringify({user_name: `${event.name}`});
     client.publish(topic, message);
-    console.log('published!');
+    console.log('Message State Published!');
 }
 
 module.exports = { publishEventInformation };

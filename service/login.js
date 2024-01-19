@@ -1,17 +1,12 @@
 const { default: axios } = require("axios");
 
-const config = {
-    user: '',
-    pw: ''
-}
-
 const login = async () => {
     try {
         const response = await axios
             .post(`/login.fcgi`,
                 {
-                    login: 'admin',
-                    password: 'admin'
+                    login: process.env.CONTROL_ID_USER,
+                    password: process.env.CONTROL_ID_PW
                 }
             );
         return response.data.session;
@@ -34,6 +29,7 @@ const loginIfNeeded = async (sessionId) => {
     const is_valid = await isValidSession(sessionId);
     if (!sessionId || !is_valid) {
         const session = await login();
+        process.env.CONTROL_ID_SESSION_ID = session;
         console.log('No session ID or not valid. New session_id: ' + session);
         return session;
     }
@@ -41,4 +37,4 @@ const loginIfNeeded = async (sessionId) => {
     return sessionId;
 };
 
-module.exports = { login, isConnected: isValidSession, loginIfNeeded };
+module.exports = { login, isValidSession, loginIfNeeded };

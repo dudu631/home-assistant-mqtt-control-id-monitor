@@ -4,14 +4,12 @@ const { publishEventInformation } = require('../service/mqtt');
 const { loginIfNeeded } = require('../service/login');
 var router = express.Router();
 
-let sessionId = "P/2dQdBf52v60dGDUYKtmqGL";
-
 router.post('/notifications/dao', async function (req, res, next) {
 
   const user_id = req.body.object_changes[0]['values']?.user_id;
   console.log(req.body.object_changes[0]);
 
-  sessionId = await loginIfNeeded(sessionId);
+  const sessionId = await loginIfNeeded(process.env.CONTROL_ID_SESSION_ID);
   try {
 
     const response = await axios
