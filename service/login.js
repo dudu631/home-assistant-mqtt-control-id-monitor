@@ -30,7 +30,7 @@ const loginIfNeeded = async (sessionId) => {
     if (!sessionId || !is_valid) {
         const session = await login();
         process.env.CONTROL_ID_SESSION_ID = session;
-        console.log('No session ID or not valid. New session_id: ' + session);
+        console.log(`No session ID or not valid. New session_id: [ ${session} ]`);
         return session;
     }
     console.log('Session still valid: ' + sessionId);

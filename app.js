@@ -8,6 +8,7 @@ require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
+const { checkMonitorConfiguration } = require('./service/monitor');
 
 var app = express();
 
@@ -37,5 +38,7 @@ app.use(function(err, req, res, next) {
 
 // SET BASE URL TO DEVICE
 axios.defaults.baseURL = `http://${process.env.CONTROL_ID_IP}/`;
+
+checkMonitorConfiguration();
 
 module.exports = app;
