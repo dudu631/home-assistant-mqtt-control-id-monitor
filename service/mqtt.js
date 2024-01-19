@@ -10,16 +10,17 @@ const options = {
 
 const client = mqtt.connect(url, options);
 
-client.on('connect',  (_pckg) => {
+client.on('connect', (_pckg) => {
     console.log('MQTT Connected successfully')
     client.publish(
         "homeassistant/sensor/control-id-test/User_Access/config",
         JSON.stringify({
-            "state_topic": "homeassistant/sensor/control-id-test/User_Access/state",
-            "value_template": "{{ value_json.user_name}}",
+            "state_topic": "homeassistant/sensor/control-id-test/User_Access",
+            "json_attributes_topic": "homeassistant/sensor/control-id-test/User_Access",
+            "value_template": "{{value_json.user_name}}",
             "unique_id": "user_name",
             "name": "User Access",
-            "expire_after": 5,
+            "expire_after": process.env.SENSOR_EXPIRATION ?? 5,
             "device": {
                 "identifiers": [
                     "control_id_face_test"
@@ -34,10 +35,11 @@ client.on('connect',  (_pckg) => {
 })
 
 const publishEventInformation = (event) => {
-    const topic = `homeassistant/sensor/control-id-test/User_Access/state`;
-    const message = JSON.stringify({user_name: `${event.name}`});
+    const topic = `homeassistant/sensor/control-id-test/User_Access`;
+    const message = JSON.stringify({ user_name: event.name, last_access: event.last_access, user_id: event.id });
+
     client.publish(topic, message);
-    console.log('Message State Published!');
+    console.log('Message Published!');
 }
 
 module.exports = { publishEventInformation };
