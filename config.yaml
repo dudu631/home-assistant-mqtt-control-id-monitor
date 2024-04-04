@@ -1,0 +1,11 @@
+name: "Control ID Home Assistant MQTT"
+description: "Integrates Control ID Events to Home Assistant."
+version: "0.0.1"
+slug: "control_id_mqtt"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386

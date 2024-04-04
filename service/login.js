@@ -21,7 +21,7 @@ const isValidSession = async (sessionId) => {
             .post(`/session_is_valid.fcgi?session=${sessionId}`);
         return response.data.session_is_valid;
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
     }
 };
 
