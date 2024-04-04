@@ -36,7 +36,11 @@ client.on('connect', (_pckg) => {
 
 const publishEventInformation = (event) => {
     const topic = `homeassistant/sensor/control-id-test/User_Access`;
-    const message = JSON.stringify({ user_name: event.name, last_access: event.last_access, user_id: event.id });
+    const message = JSON.stringify({
+        user_name: event.name,
+        last_access: event.last_access,
+        user_id: event.id
+    });
 
     client.publish(topic, message);
     console.log('Message Published!');

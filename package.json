@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start-debug-w": "set DEBUG=control-id-ha-integration:server && node ./bin/www",
     "start-debug": "DEBUG=control-id-ha-integration:server node ./bin/www"
   },
   "dependencies": {

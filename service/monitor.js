@@ -29,7 +29,7 @@ const checkMonitorConfiguration = async () => {
                 );
         }
     } catch (error) {
-        console.error(error.message);
+        console.error(`Check monitor config error: `, error.message);
     }
 }
 

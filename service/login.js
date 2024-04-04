@@ -11,7 +11,7 @@ const login = async () => {
             );
         return response.data.session;
     } catch (error) {
-        console.error(`Login error`, error);
+        console.error(`Login error: `, error.message);
     }
 };
 
@@ -21,7 +21,7 @@ const isValidSession = async (sessionId) => {
             .post(`/session_is_valid.fcgi?session=${sessionId}`);
         return response.data.session_is_valid;
     } catch (error) {
-        console.error(error.message);
+        console.error(`Session Validation error: `, error.message);
     }
 };
 
