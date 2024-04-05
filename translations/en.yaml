@@ -1,0 +1,29 @@
+---
+configuration:
+  mqtt_login:
+    name: MQTT Login User
+    description: User of MQTT
+  mqtt_pw:
+    name: MQTT Login Password
+    description: User of MQTT
+  control_id_user:
+    name: Control Id User
+    description: Control ID user.
+  control_id_pw:
+    name: Control Id Password
+    description: Control ID password.
+  control_id_ip:
+    name: Control Id Device IP
+    description: Control ID device IP.
+  control_id_ip:
+    name: Control Id Device IP
+    description: Control ID device IP.
+  control_id_monitor_host:
+    name: Control Id Monitor Host
+    description: Home assistant IP.
+  control_id_monitor_port:
+    name: Control Id Monitor Port
+    description: This addon port.
+  sensor_expiration:
+    name: Sensor Expiration (s)
+    description: Sensor expiration in seconds.

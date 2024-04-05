@@ -9,3 +9,21 @@ arch:
   - armhf
   - armv7
   - i386
+options:
+  mqtt_login:
+  mqtt_pw:
+  control_id_user:
+  control_id_pw:
+  control_id_ip:
+  control_id_monitor_host:
+  control_id_monitor_port:
+  sensor_expiration: 5
+schema:
+  mqtt_login: str
+  mqtt_pw: password
+  control_id_user: str
+  control_id_pw: password
+  control_id_ip: str
+  control_id_monitor_host: str
+  control_id_monitor_port: str
+  sensor_expiration: int

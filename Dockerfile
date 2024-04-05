@@ -11,6 +11,8 @@ RUN yarn install
 
 ENV DEBUG "control-id-ha-integration:server"
 
-CMD [ "yarn", "start-debug" ]
+RUN chmod a+x /docker_entrypoint.sh
+
+CMD [ "/docker_entrypoint.sh" ]
 
 EXPOSE 3000
