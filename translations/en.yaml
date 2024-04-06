@@ -1,6 +1,9 @@
 ---
 configuration:
-  mqtt_login:
+  mqtt_server:
+    name: MQTT Server
+    description: String of connection to mqtt
+  mqtt_user:
     name: MQTT Login User
     description: User of MQTT
   mqtt_pw:

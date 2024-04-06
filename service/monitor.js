@@ -11,18 +11,18 @@ const checkMonitorConfiguration = async () => {
                 }
             );
         if (
-            response.data.monitor.hostname === process.env.CONTROL_ID_MONITOR_HOST &&
+            response.data.monitor.hostname === process.env.CONTROL_ID_MONITOR_HOST_IP &&
             response.data.monitor.port === process.env.CONTROL_ID_MONITOR_PORT &&
             response.data.monitor.path === 'api/notifications'
         ) {
-            console.log('Monitor configuration correct! '+`[${process.env.CONTROL_ID_MONITOR_HOST}:${process.env.CONTROL_ID_MONITOR_PORT}]`);
+            console.log('Monitor configuration correct! '+`[${process.env.CONTROL_ID_MONITOR_HOST_IP}:${process.env.CONTROL_ID_MONITOR_PORT}]`);
         } else {
-            console.log('Monitor configuration on device wrong! Setting new configuration: '+`${process.env.CONTROL_ID_MONITOR_HOST}:${process.env.CONTROL_ID_MONITOR_PORT}`);
+            console.log('Monitor configuration on device wrong! Setting new configuration: '+`${process.env.CONTROL_ID_MONITOR_HOST_IP}:${process.env.CONTROL_ID_MONITOR_PORT}`);
             await axios
                 .post(`/set_configuration.fcgi?session=${sessionId}`,
                     {
                         monitor: {
-                            hostname: process.env.CONTROL_ID_MONITOR_HOST,
+                            hostname: process.env.CONTROL_ID_MONITOR_HOST_IP,
                             port: process.env.CONTROL_ID_MONITOR_PORT
                         }
                     }

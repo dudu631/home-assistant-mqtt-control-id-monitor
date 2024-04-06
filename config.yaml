@@ -3,6 +3,8 @@ description: "Integrates Control ID Events to Home Assistant."
 version: "0.0.1"
 slug: "control_id_mqtt"
 init: false
+services:
+  - mqtt:need
 arch:
   - aarch64
   - amd64
@@ -10,20 +12,19 @@ arch:
   - armv7
   - i386
 options:
-  mqtt_login:
-  mqtt_pw:
-  control_id_user:
-  control_id_pw:
+  sensor_expiration: 5
+  control_id_user: admin
+  control_id_pw: admin
   control_id_ip:
   control_id_monitor_host:
   control_id_monitor_port:
-  sensor_expiration: 5
 schema:
-  mqtt_login: str
-  mqtt_pw: password
-  control_id_user: str
-  control_id_pw: password
-  control_id_ip: str
-  control_id_monitor_host: str
-  control_id_monitor_port: str
-  sensor_expiration: int
+  mqtt_server: "str?"
+  mqtt_user: "str?"
+  mqtt_pw: "password?"
+  control_id_user: "str?"
+  control_id_pw: "password?"
+  control_id_ip: "str?"
+  control_id_monitor_host: "str?"
+  control_id_monitor_port: "str?"
+  sensor_expiration: "int"

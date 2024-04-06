@@ -1,11 +1,11 @@
 const mqtt = require("mqtt");
 
-const url = process.env.MQTT_URL;
+const url = process.env.CONTROL_ID_MQTT_CONFIG_SERVER;
 
 const options = {
     clientId: 'control_id_test',
-    username: process.env.MQTT_USER || '',
-    password: process.env.MQTT_PW || '',
+    username: process.env.CONTROL_ID_MQTT_CONFIG_USER || '',
+    password: process.env.CONTROL_ID_MQTT_CONFIG_PASSWORD || '',
 };
 
 const client = mqtt.connect(url, options);
