@@ -13,6 +13,6 @@ ENV DEBUG "control-id-ha-integration:server"
 
 RUN chmod a+x /docker_entrypoint.sh
 
-CMD [ "/docker_entrypoint.sh" ]
-
 EXPOSE 3000
+
+CMD [ "/docker_entrypoint.sh" ]

@@ -11,6 +11,10 @@ arch:
   - armhf
   - armv7
   - i386
+ports:
+  3000/tcp: "3000"
+ports_description:
+  3000/tcp: "tcp-listen port"
 options:
   sensor_expiration: 5
   control_id_user: admin
