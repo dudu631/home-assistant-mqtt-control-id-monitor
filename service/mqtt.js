@@ -1,4 +1,5 @@
 const mqtt = require("mqtt");
+const { toDashCase } = require('../utils/index');
 
 const url = process.env.CONTROL_ID_MQTT_CONFIG_SERVER;
 
@@ -10,24 +11,26 @@ const options = {
 
 const client = mqtt.connect(url, options);
 
+const DEVICE_NAME_TOPIC = toDashCase(process.env.CONTROL_ID_NAME ?? '');
+
 client.on('connect', (_pckg) => {
     console.log('MQTT Connected successfully')
     client.publish(
-        "homeassistant/sensor/control-id-test/User_Access/config",
+        `homeassistant/sensor/${DEVICE_NAME_TOPIC}/User_Access/config`,
         JSON.stringify({
-            "state_topic": "homeassistant/sensor/control-id-test/User_Access",
-            "json_attributes_topic": "homeassistant/sensor/control-id-test/User_Access",
+            "state_topic": `homeassistant/sensor/${DEVICE_NAME_TOPIC}/User_Access`,
+            "json_attributes_topic": `homeassistant/sensor/${DEVICE_NAME_TOPIC}/User_Access`,
             "value_template": "{{value_json.user_name}}",
             "unique_id": "user_name",
             "name": "User Access",
             "expire_after": process.env.SENSOR_EXPIRATION ?? 5,
             "device": {
                 "identifiers": [
-                    "control_id_face_test"
+                    `${DEVICE_NAME_TOPIC}`
                 ],
-                "name": "Control Id Face Test Device",
-                "manufacturer": "Control Id",
-                "model": "Control Id Face Test",
+                "name": `${process.env.CONTROL_ID_NAME} Device`,
+                "manufacturer": "Control ID",
+                "model": "Control Id Face",
                 "sw_version": "1.0.0",
             }
         })
@@ -35,7 +38,7 @@ client.on('connect', (_pckg) => {
 })
 
 const publishEventInformation = (event) => {
-    const topic = `homeassistant/sensor/control-id-test/User_Access`;
+    const topic = `homeassistant/sensor/${DEVICE_NAME_TOPIC}/User_Access`;
     const message = JSON.stringify({
         user_name: event.name,
         last_access: event.last_access,
