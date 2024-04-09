@@ -31,17 +31,24 @@ fi
 export CONTROL_ID_USER="$(bashio::config 'control_id_user')"
 export CONTROL_ID_PW="$(bashio::config 'control_id_pw')"
 export CONTROL_ID_IP="$(bashio::config 'control_id_ip')"
-export CONTROL_ID_MONITOR_HOST_IP="$(bashio::config 'control_id_monitor_host')"
 export CONTROL_ID_MONITOR_PORT="$(bashio::config 'control_id_monitor_port')"
 export PORT="$CONTROL_ID_MONITOR_PORT"
+
+LOCAL_HOST_IP=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | sed 's/addr://g' | grep -v '^172')
+if [ $(echo "$LOCAL_HOST_IP" | wc -l) -eq 1 ]; then
+    bashio::log.info "FOUND LOCAL IP: $LOCAL_HOST_IP!"
+else
+    bashio::log.info "Did not find home assistant IP. please fill control_id_home_assistant_ip!"
+    LOCAL_HOST_IP="$(bashio::config 'control_id_home_assistant_ip')"
+fi
+export CONTROL_ID_MONITOR_HOST_IP="$LOCAL_HOST_IP"
 
 bashio::log.info "Server: $CONTROL_ID_MQTT_CONFIG_SERVER"
 bashio::log.info "MQTT User: $CONTROL_ID_MQTT_CONFIG_USER"
 bashio::log.info "Control Id User: $CONTROL_ID_USER"
 bashio::log.info "Control Device IP: $CONTROL_ID_IP"
-bashio::log.info "Monitor Host IP: $CONTROL_ID_MONITOR_HOST_IP"
-bashio::log.info "Monitor Host Port: $CONTROL_ID_MONITOR_PORT (PORT=$PORT)"
-
+bashio::log.info "Home Assistant Machine IP: $CONTROL_ID_MONITOR_HOST_IP"
+bashio::log.info "Monitor Host Port: $CONTROL_ID_MONITOR_PORT"
 
 bashio::log.info "Starting Control ID Addon..."
 

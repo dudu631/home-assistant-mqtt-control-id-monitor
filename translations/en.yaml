@@ -21,9 +21,6 @@ configuration:
   control_id_ip:
     name: Control Id Device IP
     description: Control ID device IP.
-  control_id_monitor_host:
-    name: Control Id Monitor Host
-    description: Home assistant IP.
   control_id_monitor_port:
     name: Control Id Monitor Port
     description: This addon port.

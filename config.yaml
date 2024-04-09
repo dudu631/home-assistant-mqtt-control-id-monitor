@@ -11,17 +11,13 @@ arch:
   - armhf
   - armv7
   - i386
-ports:
-  3000/tcp: "3000"
-ports_description:
-  3000/tcp: "tcp-listen port"
+host_network: true
 options:
   sensor_expiration: 5
   control_id_user: admin
   control_id_pw: admin
   control_id_ip:
-  control_id_monitor_host:
-  control_id_monitor_port:
+  control_id_monitor_port: "3009"
 schema:
   mqtt_server: "str?"
   mqtt_user: "str?"
@@ -29,6 +25,6 @@ schema:
   control_id_user: "str?"
   control_id_pw: "password?"
   control_id_ip: "str?"
-  control_id_monitor_host: "str?"
+  control_id_home_assistant_ip: "str?"
   control_id_monitor_port: "str?"
   sensor_expiration: "int"
