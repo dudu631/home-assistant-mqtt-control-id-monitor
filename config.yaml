@@ -16,17 +16,21 @@ options:
   sensor_expiration: 5
   control_id_user: admin
   control_id_pw: admin
-  control_id_ip:
   control_id_monitor_port: "3009"
-  control_id_name: "Control ID Face"
+  control_id_devices:
+    - control_id_ip:
+      control_id_name: "Control ID Face"
 schema:
   mqtt_server: "str?"
   mqtt_user: "str?"
   mqtt_pw: "password?"
   control_id_user: "str?"
   control_id_pw: "password?"
-  control_id_ip: "str?"
+  # control_id_ip: "str?"
   control_id_home_assistant_ip: "str?"
   control_id_monitor_port: "str?"
-  control_id_name: "str"
+  # control_id_name: "str"
   sensor_expiration: "int"
+  control_id_devices:
+    - control_id_ip: str
+      control_id_name: str

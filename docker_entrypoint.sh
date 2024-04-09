@@ -32,6 +32,13 @@ export CONTROL_ID_IP="$(bashio::config 'control_id_ip')"
 export CONTROL_ID_MONITOR_PORT="$(bashio::config 'control_id_monitor_port')"
 export PORT="$CONTROL_ID_MONITOR_PORT"
 export CONTROL_ID_NAME="$(bashio::config 'control_id_name')"
+export CONTROL_DEVICES="$(bashio::config 'control_id_devices')"
+# bashio::log.info "Control Id DEVICES: $CONTROL_DEVICES"
+
+devices_list=$(bashio::config 'control_id_devices')
+num_devices=$(echo "$devices_list" | grep -c 'control_id_ip')
+
+bashio::log.info "ControlID device quantity: ${num_devices}"
 
 
 LOCAL_HOST_IP=$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | sed 's/addr://g' | grep -v '^172')
@@ -47,11 +54,24 @@ bashio::log.info "======================="
 bashio::log.info "Server: $CONTROL_ID_MQTT_CONFIG_SERVER"
 bashio::log.info "MQTT User: $CONTROL_ID_MQTT_CONFIG_USER"
 bashio::log.info "Control Id User: $CONTROL_ID_USER"
-bashio::log.info "Control Device IP: $CONTROL_ID_IP"
+# bashio::log.info "Control Device IP: $CONTROL_ID_IP"
 bashio::log.info "Home Assistant Machine IP: $CONTROL_ID_MONITOR_HOST_IP"
 bashio::log.info "Monitor Host Port: $CONTROL_ID_MONITOR_PORT"
 bashio::log.info "Sensor expiration [$SENSOR_EXPIRATION]s"
-bashio::log.info "Control Id Name: $CONTROL_ID_NAME"
+# bashio::log.info "Control Id Name: $CONTROL_ID_NAME"
+
+bashio::log.info "Devices:"
+bashio::log.info "-----"
+
+index=1
+while IFS= read -r device; do
+  ip=$(echo "$device" | jq -r '.control_id_ip')
+  name=$(echo "$device" | jq -r '.control_id_name')
+  bashio::log.info "Device ${index}: ${name} - ${ip}"
+  ((index++))
+done <<< "$devices_list"
+bashio::log.info "-----"
+
 bashio::log.info "======================="
 
 bashio::log.info "Starting Control ID Addon..."

@@ -9,7 +9,7 @@ RUN npm install -g yarn
 
 RUN yarn install
 
-ENV DEBUG "control-id-ha-integration:server"
+# ENV DEBUG "control-id-ha-integration:server"
 
 RUN chmod a+x /docker_entrypoint.sh
 

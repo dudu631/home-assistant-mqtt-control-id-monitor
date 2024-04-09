@@ -9,6 +9,10 @@ require('dotenv').config()
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 const { checkMonitorConfiguration } = require('./service/monitor');
+const { extractDeviceArrayFromString, updateDeviceOnEnvironment } = require('./utils');
+const { setDevice, getDevice } = require('./service/storage');
+const { getDeviceId } = require('./service/device');
+const { configureMqttDevice, publishDeviceInformation, connectToMQTTBroker } = require('./service/mqtt');
 
 var app = express();
 
@@ -37,8 +41,21 @@ app.use(function(err, req, res, next) {
 });
 
 // SET BASE URL TO DEVICE
-axios.defaults.baseURL = `http://${process.env.CONTROL_ID_IP}/`;
+// axios.defaults.baseURL = `http://${process.env.CONTROL_ID_IP}/`;
 
-checkMonitorConfiguration();
+const devices = extractDeviceArrayFromString(process.env.CONTROL_DEVICES);
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+devices.forEach(async device => {
+  await connectToMQTTBroker();
+  await getDeviceId(device);
+  setDevice(device);
+  await checkMonitorConfiguration(device);
+  console.log('configuring mqtt device');
+  await configureMqttDevice(device);
+  await wait(1000);
+  publishDeviceInformation(device);
+});
 
 module.exports = app;
