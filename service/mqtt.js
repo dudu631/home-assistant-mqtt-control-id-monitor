@@ -15,8 +15,15 @@ const connectToMQTTBroker = async () => {
     client = mqtt.connect(url, options);
 
     return new Promise((resolve, reject) => {
+        client.on('reconnect', function () {
+            console.log('MQTT Reconnecting...');
+        });
+        client.on('offline', function () {
+            console.log('MQTT Offline');
+        })
+
         client.on('connect', () => {
-            console.log('MQTT Connected successfully')
+            console.log('MQTT Connected successfully');
             resolve(client);
         });
 
@@ -24,6 +31,7 @@ const connectToMQTTBroker = async () => {
             console.error('Error connecting to MQTT broker:', error);
             reject(error);
         });
+
     });
 }
 
