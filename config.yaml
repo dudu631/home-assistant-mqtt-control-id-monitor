@@ -26,10 +26,8 @@ schema:
   mqtt_pw: "password?"
   control_id_user: "str?"
   control_id_pw: "password?"
-  # control_id_ip: "str?"
   control_id_home_assistant_ip: "str?"
   control_id_monitor_port: "str?"
-  # control_id_name: "str"
   sensor_expiration: "int"
   control_id_devices:
     - control_id_ip: str
