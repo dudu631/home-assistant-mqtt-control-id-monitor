@@ -23,7 +23,7 @@ const checkMonitorConfiguration = async (controlDevice) => {
         } else {
             console.log('Monitor configuration on device wrong! Setting new configuration: ' + `${process.env.CONTROL_ID_MONITOR_HOST_IP}:${process.env.CONTROL_ID_MONITOR_PORT}`);
             await axios
-                .post(`/set_configuration.fcgi?session=${sessionId}`,
+                .post(`http://${controlDevice.control_id_ip}/set_configuration.fcgi?session=${sessionId}`,
                     {
                         monitor: {
                             hostname: process.env.CONTROL_ID_MONITOR_HOST_IP,
