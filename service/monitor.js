@@ -34,6 +34,7 @@ const checkMonitorConfiguration = async (controlDevice) => {
         }
     } catch (error) {
         console.error(`Check monitor config error: `, error.message);
+        console.error(error);
     }
 }
 
