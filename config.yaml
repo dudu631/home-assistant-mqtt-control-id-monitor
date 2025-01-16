@@ -1,6 +1,6 @@
 name: "Control ID Home Assistant MQTT"
 description: "Integrates Control ID Events to Home Assistant."
-version: "0.0.1"
+version: "0.1.1"
 slug: "control_id_mqtt"
 init: false
 services:
