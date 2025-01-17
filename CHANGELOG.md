@@ -6,7 +6,7 @@
 ## 0.1.1
 - Fixed multiple devices configuration bug.
 
-## v0.1.0
+## 0.1.0
 - Initial Release.
 
 <!-- Markdown link -->
