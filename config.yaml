@@ -1,8 +1,10 @@
 name: "Control ID Home Assistant MQTT"
-description: "Integrates Control ID Events to Home Assistant."
-version: "0.1.1"
+version: "0.1.2"
 slug: "control_id_mqtt"
+description: "Integrates Control ID Events to Home Assistant."
+url: "https://github.com/dudu631/home-assistant-mqtt-control-id-monitor"
 init: false
+host_network: true
 services:
   - mqtt:need
 arch:
@@ -11,7 +13,6 @@ arch:
   - armhf
   - armv7
   - i386
-host_network: true
 options:
   sensor_expiration: 5
   control_id_user: admin
